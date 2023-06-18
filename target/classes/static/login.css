@@ -1,0 +1,11 @@
+form {
+    text-align: center;
+}
+form input {
+    display: block!important;
+    margin: 5px auto!important;
+}
+
+form input[type="text"],form input[type="password"] {
+    width: 300px;
+}

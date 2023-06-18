@@ -1,18 +1,18 @@
 package pl.camp.it.book.store.model;
 
 import lombok.*;
-//@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Book {
+public class User {
     private int id;
-    private String title;
-    private String author;
-    private double price;
-    private int quantity;
-    private String isbn;
+    private String login;
+    private String password;
+    private String name;
+    private String surname;
+    private String email;
 }

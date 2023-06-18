@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>IT Camp Book Store</title>
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+<div id="logo">
+  <img src="/logo.png">
+</div>
+<div id="menu">
+  <a href="/main" class="button">Strona główna</a>
+  <a href="/contact" class="button">Kontakt</a>
+  <a href="/login" class="button">Zaloguj</a>
+</div>
+<div id="content">
+  <form method="post">
+    <input type="text" name="login" class="input" placeholder="Login">
+    <input type="password" name="password" class="input" placeholder="Hasło">
+    <input type="submit" value="Zaloguj" class="button">
+  </form>
+</div>
+</body>
+</html>
