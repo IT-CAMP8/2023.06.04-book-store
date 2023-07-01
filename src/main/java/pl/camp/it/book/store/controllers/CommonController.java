@@ -28,18 +28,18 @@ public class CommonController {
     @GetMapping(path = {"/main", "/"})
     public String main(Model model,
                        @RequestParam(required = false) String pattern) {
-        if(!this.sessionData.isLogged()) {
-            model.addAttribute("books", new ArrayList<>());
-        } else if(pattern == null) {
+        if(pattern == null) {
             model.addAttribute("books", this.bookService.getAllBooks());
         } else {
             model.addAttribute("books", this.bookService.getFilteredBooks(pattern));
         }
+        ModelUtils.addCommonDataToModel(model, this.sessionData);
         return "index";
     }
 
     @RequestMapping(path = "/contact", method = RequestMethod.GET)
-    public String contact() {
+    public String contact(Model model) {
+        ModelUtils.addCommonDataToModel(model, this.sessionData);
         return "contact";
     }
 }

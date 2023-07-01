@@ -1,11 +1,6 @@
 package pl.camp.it.book.store;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import pl.camp.it.book.store.model.Book;
 import pl.camp.it.book.store.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -44,7 +39,9 @@ public class Main {
 
         user2.id(7).name("Janusz").surname("Kowalski");*/
 
-        System.out.println(DigestUtils.md5Hex("janusz"));
+        //System.out.println(DigestUtils.md5Hex("janusz"));
 
+        User user = new User();
+        //user.setRole(User.Role.ADMIN);
     }
 }
