@@ -12,7 +12,6 @@ import pl.camp.it.book.store.exceptions.LoginAlreadyExistException;
 import pl.camp.it.book.store.exceptions.UserValidationException;
 import pl.camp.it.book.store.model.User;
 import pl.camp.it.book.store.services.IAuthenticationService;
-import pl.camp.it.book.store.services.impl.AuthenticationServiceImpl;
 import pl.camp.it.book.store.session.SessionData;
 import pl.camp.it.book.store.validators.UserValidator;
 

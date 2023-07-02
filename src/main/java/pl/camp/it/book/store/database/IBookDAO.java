@@ -9,4 +9,5 @@ public interface IBookDAO {
     void persistBook(Book book);
     Book getBookById(int id);
     void deleteBook(int id);
+    void updateBook(Book book);
 }

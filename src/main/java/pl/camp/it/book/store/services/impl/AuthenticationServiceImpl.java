@@ -20,14 +20,6 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     SessionData sessionData;
 
     @Override
-    public boolean authenticateWithReturn(String login, String password) {
-        /*User user = this.userRepository.getByLogin(login);
-        this.logged = user != null && user.getPassword().equals(DigestUtils.md5Hex(password));
-        return this.logged;*/
-        return false;
-    }
-
-    @Override
     public void authenticate(String login, String password) {
         User user = this.userRepository.getByLogin(login);
         if(user != null && user.getPassword().equals(DigestUtils.md5Hex(password))) {

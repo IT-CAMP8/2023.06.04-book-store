@@ -36,4 +36,24 @@ public class BookServiceImpl implements IBookService {
         }
         return filtered;
     }
+
+    @Override
+    public void persistBook(Book book) {
+        this.bookDAO.persistBook(book);
+    }
+
+    @Override
+    public Book getBookById(int id) {
+        return this.bookDAO.getBookById(id);
+    }
+
+    @Override
+    public void updateBook(Book book) {
+        this.bookDAO.updateBook(book);
+    }
+
+    @Override
+    public void deleteBook(int id) {
+        this.bookDAO.deleteBook(id);
+    }
 }
