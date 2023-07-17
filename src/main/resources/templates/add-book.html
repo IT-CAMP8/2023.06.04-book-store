@@ -11,6 +11,7 @@
 <div id="content">
   <form method="post" onsubmit="return validate()">
     <div id="info"></div>
+    <input type="hidden" th:value="${parametrCos}" name="cos">
     <input type="text" class="input" placeholder="Tytuł" id="title" th:field="*{bookModel.title}">
     <input type="text" class="input" placeholder="Autor" id="author" th:field="*{bookModel.author}">
     <input type="text" class="input" placeholder="Cena" id="price" th:field="*{bookModel.price}">

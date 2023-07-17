@@ -31,7 +31,7 @@ function validate() {
         author.style.background = "#ffffff";
     }
 
-    if(!priceRegex.test(price.value)) {
+    if(!priceRegex.test(price.value) || price.value <= 0) {
         infoResult = infoResult + "Zła cena <br>";
         price.style.background = "#fcc2c2";
         result = false;

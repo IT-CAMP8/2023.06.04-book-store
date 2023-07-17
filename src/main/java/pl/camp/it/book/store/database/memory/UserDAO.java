@@ -8,6 +8,7 @@ import pl.camp.it.book.store.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDAO implements IUserRepository {
@@ -28,14 +29,15 @@ public class UserDAO implements IUserRepository {
     }
 
     @Override
-    public User getByLogin(String login) {
-        for(User user : this.users) {
+    public Optional<User> getByLogin(final String login) {
+        /*for(User user : this.users) {
             if(user.getLogin().equals(login)) {
-                return User.copyOf(user);
+                return Optional.of(User.copyOf(user));
             }
         }
 
-        return null;
+        return Optional.empty();*/
+        return this.users.stream().filter(u -> u.getLogin().equals(login)).findFirst();
     }
 
     @Override

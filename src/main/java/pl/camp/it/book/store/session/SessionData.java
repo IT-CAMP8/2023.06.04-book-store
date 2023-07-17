@@ -16,6 +16,7 @@ import pl.camp.it.book.store.model.User;
 public class SessionData {
     private User user = null;
     private Cart cart = new Cart();
+    private String info = null;
 
     public boolean isLogged() {
         return this.user != null;
@@ -26,5 +27,15 @@ public class SessionData {
             return false;
         }
         return this.user.getRole() == User.Role.ADMIN;
+    }
+
+    public String getInfo() {
+        if(this.info == null) {
+            return "";
+        } else {
+            String temp = this.info;
+            this.info = null;
+            return temp;
+        }
     }
 }

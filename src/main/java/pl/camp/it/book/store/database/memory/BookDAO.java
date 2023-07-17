@@ -9,6 +9,7 @@ import pl.camp.it.book.store.model.Book;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class BookDAO implements IBookDAO {
@@ -36,35 +37,44 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public Book getBookById(int id) {
-        for(Book book : this.books) {
+    public Optional<Book> getBookById(final int id) {
+        /*for(Book book : this.books) {
             if(book.getId() == id) {
-                return book;
+                return Optional.of(book);
             }
         }
-        return null;
+        return Optional.empty();*/
+        return this.books.stream().filter(b -> b.getId() == id).findFirst();
     }
 
     @Override
-    public void deleteBook(int id) {
-        Iterator<Book> iterator = this.books.iterator();
+    public boolean deleteBook(int id) {
+        /*Iterator<Book> iterator = this.books.iterator();
         while(iterator.hasNext()) {
             if(iterator.next().getId() == id) {
                 iterator.remove();
                 return;
             }
+        }*/
+        Optional<Book> bookBox = getBookById(id);
+        if(bookBox.isPresent()) {
+            this.books.remove(bookBox.get());
+            return true;
         }
+        return false;
     }
 
     @Override
     public void updateBook(Book book) {
-        Iterator<Book> iterator = this.books.iterator();
+        /*Iterator<Book> iterator = this.books.iterator();
         while(iterator.hasNext()) {
             if(iterator.next().getId() == book.getId()) {
                 iterator.remove();
                 break;
             }
+        }*/
+        if(deleteBook(book.getId())) {
+            this.books.add(book);
         }
-        this.books.add(book);
     }
 }
