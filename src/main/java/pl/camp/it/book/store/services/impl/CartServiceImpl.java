@@ -31,14 +31,13 @@ public class CartServiceImpl implements ICartService {
     SessionData sessionData;
 
     @Override
-    public void addProductToCart(int id) {
+    public void addProductToCart(final int id) {
         Optional<Book> bookBox = this.bookDAO.getBookById(id);
         if(bookBox.isEmpty()) {
             return;
         }
-        Book book = bookBox.get();
+        final Book book = bookBox.get();
         Cart cart = this.sessionData.getCart();
-        //TODO zamiana na stream
         for(OrderPosition orderPosition : cart.getPositions()) {
             if(orderPosition.getBook().getId() == id) {
                 if(orderPosition.getQuantity() < book.getQuantity()) {
@@ -47,6 +46,15 @@ public class CartServiceImpl implements ICartService {
                 return;
             }
         }
+        /*Optional<OrderPosition> positionBox = cart.getPositions().stream()
+                .filter(orderPosition -> orderPosition.getBook().getId() == id)
+                .findFirst();
+        if(positionBox.isPresent()) {
+            if(positionBox.get().getQuantity() < book.getQuantity()) {
+                positionBox.get().incrementQuantity();
+            }
+            return;
+        }*/
         if(book.getQuantity() > 0) {
             OrderPosition orderPosition = new OrderPosition();
             orderPosition.setBook(book);
@@ -59,7 +67,6 @@ public class CartServiceImpl implements ICartService {
     public void confirm() {
         Map<Book, Integer> booksToUpdateWithNewQuantity = new HashMap<>();
         boolean positionChanged = false;
-        //TODO zamiana na stream
         for(OrderPosition orderPosition : this.sessionData.getCart().getPositions()) {
             Optional<Book> bookFromDbBox = this.bookDAO.getBookById(orderPosition.getBook().getId());
             if(bookFromDbBox.isEmpty()) {
@@ -91,15 +98,11 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public void removeFromCart(int id) {
-        //TODO zamiana na stream
-        Set<OrderPosition> orderPositions = this.sessionData.getCart().getPositions();
-        for(OrderPosition orderPosition : orderPositions) {
-            if(orderPosition.getBook().getId() == id) {
-                orderPositions.remove(orderPosition);
-                return;
-            }
-        }
+    public void removeFromCart(final int id) {
+        this.sessionData.getCart().getPositions().stream()
+                .filter(orderPosition -> orderPosition.getBook().getId() == id)
+                .findFirst()
+                .ifPresent(op -> this.sessionData.getCart().getPositions().remove(op));
     }
 
     @Override

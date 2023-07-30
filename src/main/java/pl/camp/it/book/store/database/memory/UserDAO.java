@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public class UserDAO implements IUserRepository {
 
     IUserIdSequence userIdSequence;
@@ -37,7 +37,9 @@ public class UserDAO implements IUserRepository {
         }
 
         return Optional.empty();*/
-        return this.users.stream().filter(u -> u.getLogin().equals(login)).findFirst();
+        return this.users.stream()
+                .filter(u -> u.getLogin().equals(login))
+                .findFirst().map(User::copyOf);
     }
 
     @Override
