@@ -1,5 +1,6 @@
 package pl.camp.it.book.store.database.memory;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.book.store.database.IBookDAO;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-
 
 public class BookDAO implements IBookDAO {
     IBookIdSequence bookIdSequence;
@@ -28,6 +28,11 @@ public class BookDAO implements IBookDAO {
     @Override
     public List<Book> getAllBooks() {
         return new ArrayList<>(this.books);
+    }
+
+    @Override
+    public List<Book> getByPattern(String pattern) {
+        throw new RuntimeException();
     }
 
     @Override

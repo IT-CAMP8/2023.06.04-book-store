@@ -43,5 +43,7 @@ public class Main {
 
         User user = new User();
         //user.setRole(User.Role.ADMIN);
+
+        System.out.println(User.Role.ADMIN.toString());
     }
 }

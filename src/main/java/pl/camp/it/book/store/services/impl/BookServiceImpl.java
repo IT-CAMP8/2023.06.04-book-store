@@ -22,24 +22,7 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public List<Book> getFilteredBooks(String pattern) {
-        List<Book> books = getAllBooks();
-        /*List<Book> filtered = new ArrayList<>();
-        for(Book book : books) {
-            if(
-                    book.getTitle()
-                            .toLowerCase()
-                            .contains(pattern.toLowerCase()) ||
-                            book.getAuthor()
-                                    .toLowerCase()
-                                    .contains(pattern.toLowerCase())) {
-                filtered.add(book);
-            }
-        }
-        return filtered;*/
-        return books.stream()
-                .filter(b -> b.getTitle().toLowerCase().contains(pattern.toLowerCase())
-                || b.getAuthor().toLowerCase().contains(pattern.toLowerCase()))
-                .toList();
+        return this.bookDAO.getByPattern(pattern);
     }
 
     @Override

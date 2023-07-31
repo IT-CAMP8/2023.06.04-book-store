@@ -118,7 +118,7 @@ public class CartServiceImpl implements ICartService {
         }
         return sum;*/
         return this.sessionData.getCart().getPositions().stream()
-                .mapToDouble(op -> op.getQuantity() * op.getBook().getPrice())
-                .sum();
+                .mapToDouble(op -> op.getQuantity() * ((int) op.getBook().getPrice()*100))
+                .sum()/100;
     }
 }

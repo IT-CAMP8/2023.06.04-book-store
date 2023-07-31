@@ -1,5 +1,6 @@
 package pl.camp.it.book.store.database.memory;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.book.store.database.IUserRepository;
@@ -40,6 +41,11 @@ public class UserDAO implements IUserRepository {
         return this.users.stream()
                 .filter(u -> u.getLogin().equals(login))
                 .findFirst().map(User::copyOf);
+    }
+
+    @Override
+    public Optional<User> getById(int id) {
+        return this.users.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
