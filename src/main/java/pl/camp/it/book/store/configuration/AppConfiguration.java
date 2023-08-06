@@ -1,5 +1,6 @@
 package pl.camp.it.book.store.configuration;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +12,9 @@ import java.sql.SQLException;
 import java.util.function.Supplier;
 
 @Configuration
-@ComponentScan("pl.camp.it.book.store")
 public class AppConfiguration {
 
-    @Bean
+    //@Bean
     public Connection connection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -22,6 +22,11 @@ public class AppConfiguration {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Bean
+    public SessionFactory sessionFactory() {
+        return new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
     }
 
     @Bean
