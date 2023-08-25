@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.book.store.database.IUserRepository;
+import pl.camp.it.book.store.exceptions.LoginAlreadyExistException;
 import pl.camp.it.book.store.model.User;
 
 import java.util.Optional;
@@ -48,7 +49,7 @@ public class UserDAO implements IUserRepository {
     }
 
     @Override
-    public void persistUser(User user) {
+    public void persistUser(User user) throws LoginAlreadyExistException {
         Session session = this.sessionFactory.openSession();
         try {
             session.beginTransaction();
@@ -56,6 +57,7 @@ public class UserDAO implements IUserRepository {
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
+            throw new LoginAlreadyExistException();
         } finally {
             session.close();
         }

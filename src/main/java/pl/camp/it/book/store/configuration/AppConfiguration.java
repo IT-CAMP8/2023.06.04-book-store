@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import pl.camp.it.book.store.model.Book;
 
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.function.Supplier;
 
 @Configuration
+@EnableScheduling
 public class AppConfiguration {
 
     //@Bean

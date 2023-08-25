@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface IBookDAO {
     List<Book> getAllBooks();
     List<Book> getByPattern(String pattern);
-    void persistBook(Book book);
+    Optional<Book> persistBook(Book book);
     Optional<Book> getBookById(int id);
     boolean deleteBook(int id);
-    void updateBook(Book book);
+    Optional<Book> updateBook(Book book);
 }

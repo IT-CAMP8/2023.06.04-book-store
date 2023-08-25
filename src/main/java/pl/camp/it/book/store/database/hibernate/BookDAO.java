@@ -45,8 +45,8 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public void persistBook(Book book) {
-        this.mergeBook(book);
+    public Optional<Book> persistBook(Book book) {
+        return this.mergeBook(book);
     }
 
     @Override
@@ -103,18 +103,20 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public void updateBook(Book book) {
-        this.mergeBook(book);
+    public Optional<Book> updateBook(Book book) {
+        return this.mergeBook(book);
     }
 
-    private void mergeBook(Book book) {
+    private Optional<Book> mergeBook(Book book) {
         Session session = this.sessionFactory.openSession();
         try {
             session.beginTransaction();
-            session.merge(book);
+            Book bookFromDb = session.merge(book);
             session.getTransaction().commit();
+            return Optional.of(bookFromDb);
         } catch (Exception e) {
             session.getTransaction().rollback();
+            return Optional.empty();
         } finally {
             session.close();
         }

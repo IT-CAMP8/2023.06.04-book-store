@@ -65,7 +65,7 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public void persistBook(Book book) {
+    public Optional<Book> persistBook(Book book) {
         try {
             String sql = "INSERT INTO tbook (title, author, price, quantity, isbn) VALUES (?,?,?,?,?)";
             PreparedStatement ps = this.connection
@@ -83,6 +83,7 @@ public class BookDAO implements IBookDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return Optional.of(book);
     }
 
     @Override
@@ -120,7 +121,7 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public void updateBook(Book book) {
+    public Optional<Book> updateBook(Book book) {
         try {
             String sql = "UPDATE tbook SET title=?,author=?,price=?,quantity=?,isbn=? WHERE id=?;";
             PreparedStatement ps = this.connection.prepareStatement(sql);
@@ -134,5 +135,6 @@ public class BookDAO implements IBookDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return Optional.of(book);
     }
 }

@@ -1,5 +1,6 @@
 package pl.camp.it.book.store.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,10 +15,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String login;
+    @JsonIgnore
     private String password;
     private String name;
     private String surname;
+    @JsonIgnore
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;

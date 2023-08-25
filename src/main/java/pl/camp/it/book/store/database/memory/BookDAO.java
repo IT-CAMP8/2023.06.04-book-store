@@ -36,9 +36,10 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public void persistBook(Book book) {
+    public Optional<Book> persistBook(Book book) {
         book.setId(this.bookIdSequence.getId());
         this.books.add(book);
+        return Optional.of(book);
     }
 
     @Override
@@ -70,7 +71,7 @@ public class BookDAO implements IBookDAO {
     }
 
     @Override
-    public void updateBook(Book book) {
+    public Optional<Book> updateBook(Book book) {
         /*Iterator<Book> iterator = this.books.iterator();
         while(iterator.hasNext()) {
             if(iterator.next().getId() == book.getId()) {
@@ -81,5 +82,6 @@ public class BookDAO implements IBookDAO {
         if(deleteBook(book.getId())) {
             this.books.add(book);
         }
+        return Optional.of(book);
     }
 }
