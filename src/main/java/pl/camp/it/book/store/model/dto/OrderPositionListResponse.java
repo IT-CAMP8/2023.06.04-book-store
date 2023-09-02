@@ -2,12 +2,12 @@ package pl.camp.it.book.store.model.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.camp.it.book.store.model.Order;
+import pl.camp.it.book.store.model.OrderPosition;
 
 import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
-public class OrderListResponse {
-    private final List<OrderDTO> orderList;
+public class OrderPositionListResponse {
+    private final List<OrderPositionResponseDTO> orderList;
 }
