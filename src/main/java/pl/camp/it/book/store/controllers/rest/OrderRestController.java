@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.camp.it.book.store.exceptions.BookNotExistException;
 import pl.camp.it.book.store.exceptions.UserNotExistException;
 import pl.camp.it.book.store.model.Order;
+import pl.camp.it.book.store.model.dto.ListResponse;
 import pl.camp.it.book.store.model.dto.OrderDTO;
 import pl.camp.it.book.store.model.dto.OrderListResponse;
 import pl.camp.it.book.store.model.dto.SaveOrderRequest;
@@ -28,8 +29,8 @@ public class OrderRestController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public OrderListResponse getOrdersByUserId(@RequestParam int userId) {
-        return new OrderListResponse(this.orderService.getOrdersByUserId(userId).stream()
+    public ListResponse<OrderDTO> getOrdersByUserId(@RequestParam int userId) {
+        return new ListResponse<>(this.orderService.getOrdersByUserId(userId).stream()
                 .map(OrderDTO::new)
                 .toList());
     }

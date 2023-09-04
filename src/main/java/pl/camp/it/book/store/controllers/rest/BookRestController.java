@@ -1,11 +1,14 @@
 package pl.camp.it.book.store.controllers.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.camp.it.book.store.model.Book;
 import pl.camp.it.book.store.model.dto.BookListResponse;
+import pl.camp.it.book.store.model.dto.ListResponse;
 import pl.camp.it.book.store.services.IBookService;
 
 import java.util.List;
@@ -18,12 +21,15 @@ public class BookRestController {
     @Autowired
     IBookService bookService;
 
+    @Operation(description = "fajny endpoint do pobierania ksiazek", summary = "getBooks")
     @RequestMapping(method = RequestMethod.GET)
-    public BookListResponse getBooks(@RequestParam(required = false) String pattern) {
+    public ListResponse<Book> getBooks(@Parameter(example = "java", description = "pattern w tytule lub autorze ktory bedzie wyszukiwany")
+                                         @RequestParam(required = false)
+                                         String pattern) {
         if(pattern == null) {
-            return new BookListResponse(this.bookService.getAllBooks());
+            return new ListResponse<>(this.bookService.getAllBooks());
         }
-        return new BookListResponse(this.bookService.getFilteredBooks(pattern));
+        return new ListResponse<>(this.bookService.getFilteredBooks(pattern));
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -31,7 +37,7 @@ public class BookRestController {
         book.setId(0);
         Optional<Book> bookFromDb = this.bookService.persistBook(book);
         return bookFromDb.map(value -> ResponseEntity.status(HttpStatus.CREATED).body(value))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+                        .orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)

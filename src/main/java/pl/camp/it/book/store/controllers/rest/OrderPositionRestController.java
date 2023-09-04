@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.camp.it.book.store.model.OrderPosition;
+import pl.camp.it.book.store.model.dto.ListResponse;
 import pl.camp.it.book.store.model.dto.OrderPositionDTO;
 import pl.camp.it.book.store.model.dto.OrderPositionListResponse;
 import pl.camp.it.book.store.model.dto.OrderPositionResponseDTO;
@@ -27,8 +28,8 @@ public class OrderPositionRestController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public OrderPositionListResponse getByOrderId(@RequestParam int orderId) {
-        return new OrderPositionListResponse(
+    public ListResponse<OrderPositionResponseDTO> getByOrderId(@RequestParam int orderId) {
+        return new ListResponse<>(
                 this.orderPositionService.getByOrderId(orderId).stream()
                         .map(OrderPositionResponseDTO::new).toList());
     }

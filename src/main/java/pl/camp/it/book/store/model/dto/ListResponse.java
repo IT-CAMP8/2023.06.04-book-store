@@ -8,6 +8,6 @@ import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
-public class BookListResponse {
-    private final List<Book> bookList;
+public class ListResponse<T> {
+    private final List<T> list;
 }
