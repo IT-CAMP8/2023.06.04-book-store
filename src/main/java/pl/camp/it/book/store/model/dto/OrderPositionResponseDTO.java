@@ -18,7 +18,6 @@ public class OrderPositionResponseDTO {
     private String order;
 
     public OrderPositionResponseDTO(OrderPosition orderPosition) {
-        System.out.println(RestConstants.API_LOCATION);
         this.id = orderPosition.getId();
         this.book = RestConstants.API_LOCATION + "book/" + orderPosition.getBook().getId();
         this.quantity = orderPosition.getQuantity();

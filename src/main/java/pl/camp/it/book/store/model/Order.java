@@ -29,6 +29,10 @@ public class Order {
     private double total;
     private LocalDateTime dateTime;
 
+    public Order(int id) {
+        this.id = id;
+    }
+
     public String getPrettyTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
         return this.dateTime.format(formatter);

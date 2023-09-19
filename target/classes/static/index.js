@@ -6,8 +6,6 @@ function addToCart(id) {
     .done(wynik => {
 
     });
-
-    saveBook();
 }
 
 function saveBook() {

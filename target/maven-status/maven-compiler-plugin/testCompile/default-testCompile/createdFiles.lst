@@ -1,0 +1,17 @@
+pl\camp\it\book\store\validators\UserValidatorTest.class
+pl\camp\it\book\store\services\impl\BookServiceTest.class
+pl\camp\it\book\store\database\BookDAO.class
+pl\camp\it\book\store\database\UserDAO.class
+pl\camp\it\book\store\validators\BookValidatorTest.class
+pl\camp\it\book\store\model\OrderTest.class
+pl\camp\it\book\store\configuration\TestConfiguration.class
+pl\camp\it\book\store\model\UserTest.class
+pl\camp\it\book\store\model\dto\OrderPositionResponseDTOTest.class
+pl\camp\it\book\store\services\impl\CartServiceTest.class
+pl\camp\it\book\store\model\dto\OrderDTOTest.class
+pl\camp\it\book\store\services\impl\ServiceGenericTest.class
+pl\camp\it\book\store\database\OrderPositionDAO.class
+pl\camp\it\book\store\database\OrderDAO.class
+pl\camp\it\book\store\model\OrderPositionTest.class
+pl\camp\it\book\store\services\impl\AuthenticationServiceTest.class
+pl\camp\it\book\store\session\SessionDataTest.class

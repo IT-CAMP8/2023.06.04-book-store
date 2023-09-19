@@ -9,6 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @Entity(name = "torderposition")
 public class OrderPosition {
     @Id
@@ -21,7 +22,6 @@ public class OrderPosition {
     @JsonIgnore
     private Order order;
 
-    //TODO
     public OrderPosition(int id, Book book, int quantity) {
         this.id = id;
         this.book = book;
